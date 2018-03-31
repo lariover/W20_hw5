@@ -1,0 +1,23 @@
+{
+  "name": "homework5",
+  "version": "0.0.1",
+  "description": "The implememtation of solution for 5th homework",
+  "main": "init.js",
+  "scripts": {
+    "test": "start:test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lariover/W20_hw5.git"
+  },
+  "author": "Veronika Larionova",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lariover/W20_hw5/issues"
+  },
+  "homepage": "https://github.com/lariover/W20_hw5#readme",
+  "dependencies": {
+    "finalhandler": "^1.1.1",
+    "router": "^1.3.2"
+  }
+}
