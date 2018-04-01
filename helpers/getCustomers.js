@@ -29,6 +29,7 @@ module.exports = (req, res) => {
             res.statusCode = 304;
             return res.end();
         } else {
+            res.setHeader('Content-Type','application/json');
             res.setHeader('Last-Modified', items.lastModified.toString());
             res.setHeader('ETag', etac);
             return res.end(JSON.stringify({customers}))
@@ -36,6 +37,7 @@ module.exports = (req, res) => {
     } else {
         const modifiedSinceDate = new Date(ifModified);
         if (items.lastModified > modifiedSinceDate) {
+            res.setHeader('Content-Type','application/json');
             res.setHeader('Last-Modified', items.lastModified.toString());
             res.setHeader('ETag', etac);
             return res.end(JSON.stringify({customers}))

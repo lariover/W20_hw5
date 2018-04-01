@@ -26,7 +26,7 @@ module.exports = (req, res) => {
         storage.lastModified = new Date();
         const updatedCustomer = Object.assign(customer, body);
         res.setHeader('Content-Type', 'application/json');
-        res.end(JSON.stringify(updatedCustomer));
+        return res.end(JSON.stringify(updatedCustomer));
     }
     const etac = strongEtac();
     if (ifMatch) {
