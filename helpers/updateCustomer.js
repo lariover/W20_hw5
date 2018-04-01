@@ -2,7 +2,7 @@ const storageItems = require('./storage');
 const {strongEtac} = require('./etacHelper');
 
 
-modules.export = (req, res) => {
+module.exports = (req, res) => {
     const {params, body, headers} = req;
     const idNum = parseInt(params.id || '');
 
@@ -23,6 +23,7 @@ modules.export = (req, res) => {
     const ifUnmodified = headers['if-unmodified-since'];
     const ifMatch = headers['if-match'];
     if (!ifMatch && !ifUnmodified) { //no conditions - simply put the changes
+        storage.lastModified = new Date();
         const updatedCustomer = Object.assign(customer, body);
         res.setHeader('Content-Type', 'application/json');
         res.end(JSON.stringify(updatedCustomer));
@@ -30,6 +31,7 @@ modules.export = (req, res) => {
     const etac = strongEtac();
     if (ifMatch) {
         if (etac == ifMatch) {
+            storage.lastModified = new Date();
             const updatedCustomer = Object.assign(customer, body);
             res.setHeader('Content-Type', 'application/json');
             res.end(JSON.stringify(updatedCustomer));
@@ -43,6 +45,7 @@ modules.export = (req, res) => {
             res.statusCode = 412;
             return res.end();
         } else {
+            storage.lastModified = new Date();
             const updatedCustomer = Object.assign(customer, body);
             res.setHeader('Content-Type', 'application/json');
             res.end(JSON.stringify(updatedCustomer));

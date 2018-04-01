@@ -15,7 +15,7 @@ module.exports = (req, res) => {
         items.lastModified = new Date();
     }
     if (!ifModified && !ifNoneMatch) {
-
+        res.setHeader('Content-Type','application/json');
         res.setHeader('Last-Modified', items.lastModified.toString());
         res.setHeader('ETag', etac);
         return res.end(JSON.stringify({customers}))
